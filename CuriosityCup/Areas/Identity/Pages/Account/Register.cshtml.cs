@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using CuriosityCup.Models;
 
 namespace CuriosityCup.Areas.Identity.Pages.Account
 {
@@ -43,6 +44,29 @@ namespace CuriosityCup.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            #region AddedRegistration
+            [Required]
+            [Phone]
+            [Display(Name = "Phone Number")]
+            public string Phone { get; set; }
+
+            [Required]
+            [Display(Name = "First Name")]
+            public string FName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LName { get; set; }
+
+            [Required]
+            [Display(Name = "Birthday")]
+            [DataType(DataType.Date)]
+            public string DOB { get; set; }
+
+
+            #endregion
+
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]

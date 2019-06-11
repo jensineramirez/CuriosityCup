@@ -7,16 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CuriosityCup.Data;
 using CuriosityCup.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CuriosityCup.Controllers
 {
     public class LessonsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LessonsController(ApplicationDbContext context)
+        public LessonsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+        }
+        private async Task<IdentityUser> GetCurrentUser()
+        {
+            return await _userManager.GetUserAsync(HttpContext.User);
         }
 
         // GET: Lessons
@@ -24,6 +32,32 @@ namespace CuriosityCup.Controllers
         {
             var applicationDbContext = _context.Lessons.Include(l => l.Subject);
             return View(await applicationDbContext.ToListAsync());
+        }
+        public async Task<IActionResult> LessonsBySubject(int? id)
+        {
+            var lessons = from l in _context.Lessons
+                          select l;
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            lessons = lessons.Where(s => s.SubjectId.Equals(id));
+
+            return View(await lessons.ToListAsync());
+        }
+
+        public async Task<IActionResult> Search(string searchString)
+        {
+            var lessons = from l in _context.Lessons
+                          select l;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                lessons = lessons.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(await lessons.ToListAsync());
         }
 
         // GET: Lessons/Details/5
@@ -45,6 +79,7 @@ namespace CuriosityCup.Controllers
             return View(lesson);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Lessons/Create
         public IActionResult Create()
         {
@@ -68,7 +103,7 @@ namespace CuriosityCup.Controllers
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
-
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Lessons/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -121,7 +156,7 @@ namespace CuriosityCup.Controllers
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
-
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Lessons/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -134,6 +169,13 @@ namespace CuriosityCup.Controllers
                 .Include(l => l.Subject)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (lesson == null)
+            {
+                return NotFound();
+            }
+
+            var user = await GetCurrentUser();
+
+            if (user.UserName != "jensineramirez@gmail.com" && int.Parse(user.Id) != lesson.TeacherID)
             {
                 return NotFound();
             }

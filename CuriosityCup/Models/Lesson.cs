@@ -12,7 +12,7 @@ namespace CuriosityCup.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Required Field")]
         [Display(Name = "Email")]
-        public string TeacherID { get; set; }
+        public int TeacherID { get; set; }
         [Required(ErrorMessage = "Required Field")]
         [Display(Name = "Subject")]
         public int SubjectId { get; set; }
