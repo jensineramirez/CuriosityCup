@@ -4,14 +4,16 @@ using CuriosityCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CuriosityCup.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190611013533_TestAnswer")]
+    partial class TestAnswer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +111,7 @@ namespace CuriosityCup.Data.Migrations
 
                     b.HasIndex("TestQuestionId");
 
-                    b.ToTable("TestAnswers");
+                    b.ToTable("testAnswers");
                 });
 
             modelBuilder.Entity("CuriosityCup.Models.TestQuestion", b =>
@@ -128,31 +130,6 @@ namespace CuriosityCup.Data.Migrations
                     b.HasIndex("TestId");
 
                     b.ToTable("TestQuestions");
-                });
-
-            modelBuilder.Entity("CuriosityCup.Models.UserComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Comment")
-                        .IsRequired();
-
-                    b.Property<DateTime>("CommentAdded");
-
-                    b.Property<int>("LessonId");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LessonId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserComments");
                 });
 
             modelBuilder.Entity("CuriosityCup.Models.UserProfile", b =>
@@ -187,34 +164,6 @@ namespace CuriosityCup.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserProfiles");
-                });
-
-            modelBuilder.Entity("CuriosityCup.Models.UserTest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateTaken");
-
-                    b.Property<bool>("PassFail");
-
-                    b.Property<int>("Score");
-
-                    b.Property<int>("TestId");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.Property<int?>("UserId1");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TestId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("UserTests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -426,37 +375,12 @@ namespace CuriosityCup.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("CuriosityCup.Models.UserComment", b =>
-                {
-                    b.HasOne("CuriosityCup.Models.Lesson", "Lesson")
-                        .WithMany()
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("CuriosityCup.Models.UserProfile", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CuriosityCup.Models.UserTest", b =>
-                {
-                    b.HasOne("CuriosityCup.Models.Test", "Test")
-                        .WithMany()
-                        .HasForeignKey("TestId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CuriosityCup.Models.UserProfile", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
