@@ -11,6 +11,26 @@
     <Compile Remove="Data\Migrations\20190612213120_Lesson.Designer.cs" />
     <Compile Remove="Data\Migrations\20190613012715_subject.cs" />
     <Compile Remove="Data\Migrations\20190613012715_subject.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613013253_lesson.cs" />
+    <Compile Remove="Data\Migrations\20190613013253_lesson.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613013403_lesson.cs" />
+    <Compile Remove="Data\Migrations\20190613013403_lesson.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613013917_test.cs" />
+    <Compile Remove="Data\Migrations\20190613013917_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613014148_testanswer.cs" />
+    <Compile Remove="Data\Migrations\20190613014148_testanswer.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613014451_testanswer.cs" />
+    <Compile Remove="Data\Migrations\20190613014451_testanswer.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613014517_usertest.cs" />
+    <Compile Remove="Data\Migrations\20190613014517_usertest.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613015407_usertest.cs" />
+    <Compile Remove="Data\Migrations\20190613015407_usertest.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613033840_usertest.cs" />
+    <Compile Remove="Data\Migrations\20190613033840_usertest.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613034001_usertest.cs" />
+    <Compile Remove="Data\Migrations\20190613034001_usertest.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190613040656_usertest.cs" />
+    <Compile Remove="Data\Migrations\20190613040656_usertest.Designer.cs" />
   </ItemGroup>
 
 

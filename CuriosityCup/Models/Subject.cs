@@ -8,10 +8,8 @@ namespace CuriosityCup.Models
 {
     public class Subject
     {
-        [Required]
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Subject Name")]
         public string SubjectName { get; set; }
     }
 }

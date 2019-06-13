@@ -12,12 +12,12 @@ namespace CuriosityCup.Models
         public int Id { get; set; }
         [Required]
         [Display(Name = "Teacher")]
-        public int TeacherId { get; set; }
+        public string TeacherId { get; set; }
         [Required]
         [Display(Name = "Subject")]
         public int SubjectId { get; set; }
 
+        public virtual IdentityUser Teacher { get; set; }
         public virtual Subject Subject { get; set; }
-        public virtual IdentityUser User { get; set; }
     }
 }

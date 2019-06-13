@@ -12,7 +12,7 @@ namespace CuriosityCup.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Required Field")]
         [Display(Name = "Email")]
-        public int TeacherID { get; set; }
+        public string TeacherID { get; set; }
         [Required(ErrorMessage = "Required Field")]
         [Display(Name = "Subject")]
         public int SubjectId { get; set; }
@@ -27,7 +27,7 @@ namespace CuriosityCup.Models
         public string SectionDescription { get; set; }
 
         public virtual Subject Subject { get; set; }
-        public virtual IdentityUser User { get; set; }
+        public virtual IdentityUser Teacher { get; set; }
 
     }
 }

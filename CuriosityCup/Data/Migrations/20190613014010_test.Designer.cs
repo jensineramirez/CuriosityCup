@@ -4,14 +4,16 @@ using CuriosityCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CuriosityCup.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190613014010_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,44 +82,6 @@ namespace CuriosityCup.Data.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Tests");
-                });
-
-            modelBuilder.Entity("CuriosityCup.Models.TestAnswer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Answer")
-                        .IsRequired();
-
-                    b.Property<bool>("IsCorrect");
-
-                    b.Property<int>("QuestionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("TestAnswers");
-                });
-
-            modelBuilder.Entity("CuriosityCup.Models.TestQuestion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Question")
-                        .IsRequired();
-
-                    b.Property<int>("TestId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TestId");
-
-                    b.ToTable("TestQuestions");
                 });
 
             modelBuilder.Entity("CuriosityCup.Models.UserProfile", b =>
@@ -342,22 +306,6 @@ namespace CuriosityCup.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CuriosityCup.Models.TestAnswer", b =>
-                {
-                    b.HasOne("CuriosityCup.Models.TestQuestion", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CuriosityCup.Models.TestQuestion", b =>
-                {
-                    b.HasOne("CuriosityCup.Models.Test", "Test")
-                        .WithMany()
-                        .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

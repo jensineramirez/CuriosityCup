@@ -102,6 +102,12 @@ namespace CuriosityCup.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    //Checking to see if email contains student in it
+                    if (user.Email.LastIndexOf("student") > 0)
+                        await _userManager.AddToRoleAsync(user, "student");
+                    else
+                        await _userManager.AddToRoleAsync(user, "teacher");
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

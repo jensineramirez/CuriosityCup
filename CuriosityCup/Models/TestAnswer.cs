@@ -10,15 +10,11 @@ namespace CuriosityCup.Models
     {
         public int Id { get; set; }
         [Required]
-        public int TestId { get; set; }
-        [Required]
-        public string QuestionId { get; set; }
+        public int QuestionId { get; set; }
         [Required]
         public string Answer { get; set; }
         [Required]
         public bool IsCorrect { get; set; }
-
-        public virtual Test Test { get; set; }
-        public virtual TestQuestion TestQuestion { get; set; }
+        public virtual TestQuestion Question { get; set; }
     }
 }
