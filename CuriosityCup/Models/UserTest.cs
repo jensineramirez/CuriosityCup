@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace CuriosityCup.Models
         [Display(Name = "Status")]
         public bool PassFail { get; set; }
 
-        public virtual UserProfile User { get; set; }
+        public virtual IdentityUser User { get; set; }
         public virtual Test Test { get; set; }
     }
 }

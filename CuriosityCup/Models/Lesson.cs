@@ -27,7 +27,7 @@ namespace CuriosityCup.Models
         public string SectionDescription { get; set; }
 
         public virtual Subject Subject { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
+        public virtual IdentityUser User { get; set; }
 
     }
 }
