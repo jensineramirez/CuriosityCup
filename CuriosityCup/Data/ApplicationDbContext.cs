@@ -14,7 +14,7 @@ namespace CuriosityCup.Data
         {
         }
 
-        //public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
         //public DbSet<Lesson> Lessons { get; set; }
         //public DbSet<UserProfile> UserProfiles { get; set; }
         //public DbSet<Test> Tests { get; set; }
