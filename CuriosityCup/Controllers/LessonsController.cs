@@ -33,6 +33,7 @@ namespace CuriosityCup.Controllers
             var applicationDbContext = _context.Lessons.Include(l => l.Subject);
             return View(await applicationDbContext.ToListAsync());
         }
+
         public async Task<IActionResult> LessonsBySubject(int? id)
         {
             var lessons = from l in _context.Lessons
