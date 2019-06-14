@@ -14,9 +14,12 @@ namespace CuriosityCup.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public TestsController(ApplicationDbContext context)
+        private ApplicationDbContext _contextClues;
+
+        public TestsController(ApplicationDbContext context, ApplicationDbContext contextClues)
         {
             _context = context;
+            _contextClues = context;
         }
 
         // GET: Tests
@@ -45,6 +48,13 @@ namespace CuriosityCup.Controllers
 
             return View(test);
         }
+
+
+        public void TakesTest()
+        {
+
+        }
+
 
         // GET: Tests/Create
         public IActionResult Create()
