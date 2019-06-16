@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CuriosityCup.Data;
 using CuriosityCup.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CuriosityCup.Controllers
 {
@@ -55,7 +56,7 @@ namespace CuriosityCup.Controllers
 
         }
 
-
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Tests/Create
         public IActionResult Create()
         {
@@ -81,7 +82,7 @@ namespace CuriosityCup.Controllers
             ViewData["TeacherId"] = new SelectList(_context.Users, "Id", "Id", test.TeacherId);
             return View(test);
         }
-
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Tests/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -137,6 +138,7 @@ namespace CuriosityCup.Controllers
             return View(test);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Tests/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

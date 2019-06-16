@@ -1,15 +1,22 @@
 ﻿@model IEnumerable<CuriosityCup.Models.Subject>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Subjects";
 }
 
-<h1>Index</h1>
+<h1>Subjects</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+@foreach (var item in Model)
+{
+    <div class="flex-lg-column ">
+        <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
+    </div>
+}
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -19,17 +26,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+        @foreach (var item in Model)
+        {
+            <div class="flex-lg-row">
                 <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+            </div>
+            <tr>
+                <td>
+                    <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
+                </td>
+                <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+            </tr>
+        }
     </tbody>
-</table>
+</table>*@

@@ -80,6 +80,24 @@ namespace CuriosityCup.Controllers
             return View(lesson);
         }
 
+        public async Task<IActionResult> DetailPage(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var lesson = await _context.Lessons
+                .Include(l => l.Subject)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (lesson == null)
+            {
+                return NotFound();
+            }
+
+            return View(lesson);
+        }
+
         [Authorize(Roles = "Admin, Teacher")]
         // GET: Lessons/Create
         public IActionResult Create()

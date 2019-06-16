@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CuriosityCup.Data;
 using CuriosityCup.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CuriosityCup.Controllers
 {
@@ -42,13 +43,12 @@ namespace CuriosityCup.Controllers
 
             return View(subject);
         }
-
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Subjects/Create
         public IActionResult Create()
         {
             return View();
         }
-
         // POST: Subjects/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -64,7 +64,7 @@ namespace CuriosityCup.Controllers
             }
             return View(subject);
         }
-
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Subjects/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -116,6 +116,7 @@ namespace CuriosityCup.Controllers
             return View(subject);
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         // GET: Subjects/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
