@@ -200,11 +200,12 @@ namespace CuriosityCup.Controllers
                 return NotFound();
             }
 
-            var user = await GetCurrentUser();
-
-            if (user.UserName != "jensineramirez@gmail.com" && user.Id != lesson.TeacherID)
+            //Only allows users to edit their own info
+            var currentUser = await GetCurrentUser();
+            var teacher = lesson.TeacherID;
+            if (currentUser.Id != teacher || User.IsInRole("Admin"))
             {
-                return NotFound();
+                return Forbid();
             }
 
             return View(lesson);
