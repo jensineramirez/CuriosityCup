@@ -16,8 +16,12 @@ namespace CuriosityCup.Models
         [Required]
         [Display(Name = "Subject")]
         public int SubjectId { get; set; }
+        [Required]
+        [Display(Name = "Lesson")]
+        public int LessonId { get; set; }
 
         public virtual IdentityUser Teacher { get; set; }
         public virtual Subject Subject { get; set; }
+        public virtual Lesson Lesson { get; set; }
     }
 }

@@ -1,2 +1,7 @@
 ﻿body {
 }
+
+.btn-general {
+    padding: 2px;
+    background-color: lightcoral;
+}

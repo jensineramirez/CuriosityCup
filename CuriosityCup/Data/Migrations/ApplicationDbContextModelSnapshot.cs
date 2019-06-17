@@ -68,12 +68,16 @@ namespace CuriosityCup.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("LessonId");
+
                     b.Property<int>("SubjectId");
 
                     b.Property<string>("TeacherId")
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
 
                     b.HasIndex("SubjectId");
 
@@ -334,6 +338,11 @@ namespace CuriosityCup.Data.Migrations
 
             modelBuilder.Entity("CuriosityCup.Models.Test", b =>
                 {
+                    b.HasOne("CuriosityCup.Models.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("CuriosityCup.Models.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")

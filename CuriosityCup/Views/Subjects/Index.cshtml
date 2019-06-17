@@ -9,38 +9,42 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class=".col-6 .col-md-4">
+            <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">
+                <div class="btn btn-outline-info">@Html.DisplayFor(modelItem => item.SubjectName)</div>
+            </a>
+        </div>
+    }
+</div>
 
-@foreach (var item in Model)
-{
-    <div class="flex-lg-column ">
-        <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
-    </div>
-}
 @*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SubjectName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <div class="flex-lg-row">
-                <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
-            </div>
+        <thead>
             <tr>
-                <td>
-                    <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
-                </td>
-                <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubjectName)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>*@
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <div class="flex-lg-row">
+                    <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
+                </div>
+                <tr>
+                    <td>
+                        <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.SubjectName)</a>
+                    </td>
+                    <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
