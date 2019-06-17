@@ -124,7 +124,7 @@ namespace CuriosityCup.Controllers
         }
         [Authorize(Roles = "Admin, Teacher")]
         // GET: Lessons/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int? userid)
         {
             if (id == null)
             {
@@ -136,6 +136,14 @@ namespace CuriosityCup.Controllers
             {
                 return NotFound();
             }
+            //Only allows users to edit their own info
+            var currentUser = await GetCurrentUser();
+            var teacher = lesson.TeacherID;
+            if(currentUser.Id != teacher)
+            {
+                return Forbid();
+            }
+
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
