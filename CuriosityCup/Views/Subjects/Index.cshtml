@@ -3,22 +3,27 @@
 @{
     ViewData["Title"] = "Subjects";
 }
+    <div class="text-center">
+        <h1 class="display-1">Subjects to Explore!</h1>
 
-<h1>Subjects</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class=".col-6 .col-md-4">
-            <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">
-                <div class="btn btn-outline-info">@Html.DisplayFor(modelItem => item.SubjectName)</div>
-            </a>
+        @*<p>
+            <a asp-action="Create">Create New</a>
+        </p>*@
+    <div class="text-center">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class=".col-6 .col-md-4">
+                    <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@item.Id">
+                        <div class="btn btn-outline-info">@Html.DisplayFor(modelItem => item.SubjectName)</div>
+                    </a>
+                </div>
+            }
         </div>
-    }
-</div>
+    </div>
+
+    </div>
+
 
 @*<table class="table">
         <thead>
