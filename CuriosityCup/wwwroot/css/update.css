@@ -31,7 +31,6 @@ a:hover {
 }
 
 #center-grid {
-
 }
 #right-grid {
 
@@ -178,4 +177,19 @@ span {
 }
 .login-input:hover:focus {
     border: none;
+}
+.lg-square-btn-container {
+    height: 250px;
+}
+.btn-subject {
+    width: 250px;
+    line-height: 250px;
+}
+.subject-link {
+    height: 250px;
+
+    text-transform: uppercase;
+}
+.subject-index-container {
+    padding: 5%;
 }
