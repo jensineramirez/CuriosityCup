@@ -22,15 +22,15 @@
 <body>
     <header>
         <nav class="nav border-bottom box-shadow" style="background: none !important;">
-            <div class="nav-container">
+            <div class="container">
                 <div class="nav-grid pt-3">
-                    <div id="left-grid">
-                        <div class="dropdown show">
-                            <div>
+                    <div id="left-grid" class="float-lg-right">
+                        <div class="dropdown show ">
+                            <div id="main-menu-dropdown">
                                 <a class="dropdown-toggle" id="explore-icon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Lessons" asp-action="Index">
-                                    <img class="nav-icon" src="https://img.icons8.com/wired/64/000000/binoculars.png" alt="Explore">
+                                    <img class="nav-icon" src="https://img.icons8.com/wired/100/000000/binoculars.png" alt="Explore">
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="explore-icon">
+                                <div class="dropdown-menu" id="main-menu-dropdown-items" aria-labelledby="explore-icon">
                                     <a class="dropdown-item" asp-controller="Subjects" asp-action="Index">All Subjects</a>
                                     <a class="dropdown-item" asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="1">English</a>
                                     <a class="dropdown-item" asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="2">Psychology</a>
@@ -41,7 +41,7 @@
                         <div class="search-bar-container">
                             <form>
                                 <div class="search-bar-container">
-                                    <span class="icon"><img id="search-bar-icon" class="nav-icon" src="https://img.icons8.com/wired/64/000000/search.png" alt="Search"></span>
+                                    <span class="icon"><img id="search-bar-icon" class="nav-icon" src="https://img.icons8.com/wired/100/000000/search.png" alt="Search"></span>
                                     <input class="search-bar-input" placeholder="Search here..." type="search" value="" name="search" id="search" />
                                 </div>
                             </form>
@@ -49,12 +49,12 @@
                     </div>
                     <div id="center-grid">
                         <a id="home-icon" asp-controller="Home" asp-action="Index">
-                            <img class="nav-icon" src="https://img.icons8.com/wired/64/000000/tea.png" alt="Home">
+                            <img class="nav-icon" src="https://img.icons8.com/wired/100/000000/tea.png" alt="Home">
                         </a>
                     </div>
                     <div id="right-grid">
                         <a id="about-icon" class="nav-right" asp-controller="Home" asp-action="About">
-                            <img class="nav-icon" src="https://img.icons8.com/wired/64/000000/user-female-circle.png" alt="About Us">
+                            <img class="nav-icon" src="https://img.icons8.com/wired/100/000000/user-female-circle.png" alt="About Us">
                         </a>
                         <partial name="_LoginPartial" />
                     </div>
@@ -62,14 +62,14 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted text-center">
         <div class="container">
             &copy; 2019 - CuriosityCup - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

@@ -102,6 +102,7 @@ namespace CuriosityCup.Controllers
         // GET: Lessons/Create
         public IActionResult Create()
         {
+            ViewData["TeacherID"] = new SelectList(_context.Users, "Id", "Email");
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName");
             return View();
         }
@@ -113,18 +114,28 @@ namespace CuriosityCup.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,TeacherID,SubjectId,Title,Video,SectionDescription")] Lesson lesson)
         {
+            var currentUser = await GetCurrentUser();
+
+            if(currentUser != null)
+            {
+                lesson.TeacherID = currentUser.Id;
+            }
+
+            lesson.SubjectId = 1;
+
             if (ModelState.IsValid)
             {
                 _context.Add(lesson);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
         [Authorize(Roles = "Admin, Teacher")]
         // GET: Lessons/Edit/5
-        public async Task<IActionResult> Edit(int? id, int? userid)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -136,6 +147,7 @@ namespace CuriosityCup.Controllers
             {
                 return NotFound();
             }
+
             //Only allows users to edit their own info
             var currentUser = await GetCurrentUser();
             var teacher = lesson.TeacherID;
