@@ -6,17 +6,8 @@
 
     <div class="text-center mt-4">
         <h1 class="display-4">@Html.DisplayFor(model => model.Title)</h1>
-        @if (User.Identity.IsAuthenticated)
-        {
-            @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
-            {
-                <p>
-                    <a class="text-danger" asp-action="Create">Create New</a>
-                </p>
-            }
-        }
     </div>
-    <div class="text-center pt-3 mb-3" style="height: 50vh;">
+    <div class="text-center pt-3 mb-3">
         <div class="flex-column">
             <div class="">
                 <iframe src="@Model.Video" frameborder="0" allowtransparency="false" allowFullScreen="allowFullScreen" style="height: 350px; width: 450px;"></iframe>
@@ -24,15 +15,16 @@
             <div class="text-center mt-3">
                 @Html.DisplayFor(model => model.SectionDescription)
             </div>
-        </div>
-        <div class="">
-            @if (User.Identity.IsAuthenticated)
-            {
-                @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+            <div class="">
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <a class="text-info" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> <span> |</span>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                    {
+                        <a class="text-info" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> <span> |</span>
+                        <a class="text-danger" asp-action="Create">Create New</a><span> |</span>
+                    }
                 }
-            }
-            <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@Model.SubjectId">Back to List</a>
+                <a asp-controller="Lessons" asp-action="LessonsBySubject" asp-route-id="@Model.SubjectId">Back to List</a>
+            </div>
         </div>
     </div>

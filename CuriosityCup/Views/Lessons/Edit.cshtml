@@ -40,7 +40,18 @@
     </div>
 
     <div>
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Back to List</a><br />
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+            {
+                <p>
+                    <a class="text-danger" asp-action="Delete" asp-route-id="@this.Model.Id" >Delete</a>
+
+                </p>
+            }
+        }
     </div>
 </div>
 
