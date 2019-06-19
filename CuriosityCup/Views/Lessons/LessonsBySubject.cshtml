@@ -4,32 +4,51 @@
     ViewData["Title"] = "Lessons By Subject";
 }
 
-<h1>Lessons By Subject</h1>
+    <div class="text-center mt-4">
+        <h1 class="display-4">Lessons</h1>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+            {
+                <p>
+                    <a class="text-danger" asp-action="Create">Create New</a>
+                </p>
+            }
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
-            </td>
-            @*<td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>*@
-        </tr>
-}
-    </tbody>
-</table>
+        <div class="text-center">
+            @foreach (var item in Model)
+            {
+                <div class="m-3">
+                    <a class="text-uppercase text-primary font-weight-bold" style="height: 40px; line-height: 40px;" asp-action="Details" asp-route-id="@item.Id">
+                        <div class="" style="margin: auto; width: 40%; background-color: rgba(128, 128, 128, 0.31); ">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+
+    <div class="float-left">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
