@@ -209,14 +209,14 @@ span {
     border: none;
 }
 .lg-square-btn-container {
-    height: 250px;
+    height: 65px;
 }
 .btn-subject {
-    width: 250px;
-    line-height: 250px;
+    width: 170px;
+    line-height: 65px;
 }
 .subject-link {
-    height: 250px;
+    height: 65px;
     text-transform: uppercase;
 }
 .subject-index-container {

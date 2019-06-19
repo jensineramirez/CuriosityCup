@@ -156,6 +156,7 @@ namespace CuriosityCup.Controllers
                 return Forbid();
             }
 
+            ViewData["TeacherID"] = new SelectList(_context.Users, "Id", "TeacherID", lesson.TeacherID);
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
