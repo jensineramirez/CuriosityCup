@@ -161,11 +161,11 @@ span {
 
 
 .home-left-btn {
-    width: 100%;
+    overflow: hidden;
 }
 
 .home-right-btn {
-    width: 100%;
+    overflow: hidden;
 }
 
 .home-main-link {
