@@ -67,8 +67,6 @@ namespace CuriosityCup.Areas.Identity.Pages.Account
             [Display(Name = "Birthday")]
             [DataType(DataType.Date)]
             public string DOB { get; set; }
-
-
             #endregion
 
 

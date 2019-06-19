@@ -53,15 +53,13 @@ namespace CuriosityCup.Areas.Identity.Pages.Account.Manage
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
             [Display(Name = "First Name")]
             public string FName { get; set; }
 
-            [Required]
+
             [Display(Name = "Last Name")]
             public string LName { get; set; }
 
-            [Required]
             [Display(Name = "Birthday")]
             [DataType(DataType.Date)]
             public string DOB { get; set; }
