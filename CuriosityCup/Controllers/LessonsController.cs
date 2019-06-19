@@ -129,7 +129,7 @@ namespace CuriosityCup.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
+            ViewData["TeacherID"] = new SelectList(_context.Users, "Id", "Email", lesson.Teacher.Email);
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
@@ -156,7 +156,7 @@ namespace CuriosityCup.Controllers
                 return Forbid();
             }
 
-            ViewData["TeacherID"] = new SelectList(_context.Users, "Id", "TeacherID", lesson.TeacherID);
+            ViewData["TeacherID"] = new SelectList(_context.Users, "Id", "Email", lesson.Teacher.Email);
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
@@ -193,6 +193,7 @@ namespace CuriosityCup.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TeacherID"] = new SelectList(_context.Users, "Id", "Email", lesson.Teacher.Email);
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "Id", "SubjectName", lesson.SubjectId);
             return View(lesson);
         }
